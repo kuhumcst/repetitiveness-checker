@@ -6,7 +6,7 @@ PNAME=repver$(PG)
 VERSION=2
 MINOR_NUMBER=1
 
-BIN=../../../bin/
+BIN=../
 
 LIB=
 
