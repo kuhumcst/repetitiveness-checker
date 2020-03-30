@@ -417,7 +417,7 @@ public:
             strcpy(this->typestring,typestring);
             int kar;
             const char * s = typestring;
-            while((kar = getUTF8char(s,UTF8)) != 0)
+            while((kar = getUTF8char(s,globUTF8)) != 0)
                 {
                 if(!isAlpha(kar))
                     {
@@ -792,8 +792,8 @@ void header(FILE * fpo,const char * title)
         "span { background-color: Silver; } </style>"
         "</head>\n"
         "<body>\n",
-        UTF8 ? "UTF-8" : "ISO-8859-1",
-        UTF8 ? "UTF-8" : "ISO-8859-1"
+        globUTF8 ? "UTF-8" : "ISO-8859-1",
+        globUTF8 ? "UTF-8" : "ISO-8859-1"
         );
     }
 
@@ -2198,8 +2198,8 @@ int
 #endif
     if(cmp == 0)
         {
-        int AA = UTF8char((*A)->wordpointer,UTF8);
-        int BB = UTF8char((*B)->wordpointer,UTF8);
+        int AA = UTF8char((*A)->wordpointer,globUTF8);
+        int BB = UTF8char((*B)->wordpointer,globUTF8);
         /* If a type can be written with upper case but also with lower case, 
         prefer the lower case version, just to please the eye: */
         if(isUpper(AA))
@@ -3623,7 +3623,7 @@ double ComputeRepetitiveness(const char ** sis, double * versionalikeness,bool m
             const char * tp = typeArray[i].name();
             int kar;
             fprintf(fw,"^ ");
-            while((kar = getUTF8char(tp,UTF8)) != 0)
+            while((kar = getUTF8char(tp,globUTF8)) != 0)
                 {
                 char let[7];
                 int len = UnicodeToUtf8(kar,let,sizeof(let)-1);
@@ -3648,11 +3648,11 @@ double ComputeRepetitiveness(const char ** sis, double * versionalikeness,bool m
             )
             {
             const char * tp = typeArray[i].name();
-            while(UTF8 && getUTF8char(tp,UTF8) != 0)
+            while(globUTF8 && getUTF8char(tp,globUTF8) != 0)
                 {
                 ;
                 }
-            if(!UTF8)
+            if(!globUTF8)
                 {
                 printf("%s\n",typeArray[i].name());
                 getchar();
